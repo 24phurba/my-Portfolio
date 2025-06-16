@@ -18,6 +18,19 @@ const About = () => {
         well-known institute in Bhutan: <em>Global Computer Center</em> located
         in Wangdue district.
       </p>
+      <p>
+        I recently completed a 3-month web development course focused on the
+        fundamentals of building responsive and interactive websites. Throughout
+        the course, I gained hands-on experience with HTML, CSS, and JavaScript
+        — the core technologies of frontend development. I learned how to
+        structure web pages using HTML, style them with CSS for a visually
+        appealing layout, and bring them to life with JavaScript by adding
+        dynamic features. The course also helped me understand how to create
+        user-friendly designs and apply best practices in modern web
+        development. This training has laid a strong foundation for me to
+        continue growing as a web developer and start building real-world
+        projects.
+      </p>
 
       <p style={styles.text}>
         I also worked for <strong>two years</strong> as a counter official in
