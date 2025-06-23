@@ -7,7 +7,7 @@ body {
 
 .header {
   background-color: #222;
-  color: white;
+  color: rgb(67, 193, 168);
   padding: 1rem;
   text-align: center;
 }
@@ -28,3 +28,4 @@ body {
   background: #eee;
   margin-top: 2rem;
 }
+
