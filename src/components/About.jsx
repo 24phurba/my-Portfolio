@@ -1,104 +1,168 @@
+import { useEffect, useState } from "react";
+
 const About = () => {
+  // State to trigger fade-in animations after mount
+  const [loaded, setLoaded] = useState(false);
+  useEffect(() => {
+    setLoaded(true);
+  }, []);
+
   return (
-    <section id="about" style={styles.section}>
-      <h2 style={styles.heading}>✨ About Me</h2>
-      <img src="myphoto.jpg" alt="Phurba Profile" style={styles.image} />
-      <p style={styles.text}>
-        Hi, I'm <strong>Phurba</strong> — a passionate web developer exploring{" "}
-        <span style={styles.highlight}>React</span>,{" "}
-        <span style={styles.highlight}>Node.js</span>, and{" "}
-        <span style={styles.highlight}>MongoDB</span>. <br />I love dancing and
-        building cool apps that solve real problems.
-      </p>
+    <section style={styles.section}>
+      <div style={styles.gradientOverlay}></div>
+      <div
+        style={{
+          ...styles.overlay,
+          opacity: loaded ? 1 : 0,
+          transform: loaded ? "translateY(0)" : "translateY(40px)",
+          transition: "opacity 1s ease, transform 1s ease",
+        }}
+      >
+        <h2 style={styles.heading}>✨ About Me</h2>
+        <img
+          src="myphoto.jpg"
+          alt="Phurba Profile"
+          style={{
+            ...styles.image,
+            transition: "transform 0.3s ease, box-shadow 0.3s ease",
+            cursor: "pointer",
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.transform = "scale(1.05)";
+            e.currentTarget.style.boxShadow =
+              "0 10px 30px rgba(142, 68, 173, 0.5)";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = "scale(1)";
+            e.currentTarget.style.boxShadow = "0 6px 20px rgba(0,0,0,0.2)";
+          }}
+        />
+        <p style={styles.text}>
+          Hi, I'm <strong>Phurba</strong> — a passionate web developer exploring{" "}
+          <span style={styles.highlight}>React</span>,{" "}
+          <span style={styles.highlight}>Node.js</span>, and{" "}
+          <span style={styles.highlight}>MongoDB</span>. <br />I love dancing
+          and building cool apps that solve real problems.
+        </p>
 
-      <h2 style={styles.subHeading}>🎓 Trainings & 💼 Work Experience</h2>
+        <h2 style={styles.subHeading}>🎓 Trainings & 💼 Work Experience</h2>
 
-      <p style={styles.text}>
-        I completed a <strong>Tally ERP 0.9</strong> course over six months at a
-        well-known institute in Bhutan: <em>Global Computer Center</em> located
-        in Wangdue district.
-      </p>
-      <p>
-        I recently completed a 3-month web development course focused on the
-        fundamentals of building responsive and interactive websites. Throughout
-        the course, I gained hands-on experience with HTML, CSS, and JavaScript
-        — the core technologies of frontend development. I learned how to
-        structure web pages using HTML, style them with CSS for a visually
-        appealing layout, and bring them to life with JavaScript by adding
-        dynamic features. The course also helped me understand how to create
-        user-friendly designs and apply best practices in modern web
-        development. This training has laid a strong foundation for me to
-        continue growing as a web developer and start building real-world
-        projects.
-      </p>
+        <p style={styles.text}>
+          I completed a <strong>Tally ERP 0.9</strong> course over six months at
+          a well-known institute in Bhutan: <em>Global Computer Center</em>{" "}
+          located in Wangdue district.
+        </p>
 
-      <p style={styles.text}>
-        I also worked for <strong>two years</strong> as a counter official in
-        Punakha Dzong. This role sharpened my communication and
-        <span style={styles.highlight}> problem-solving skills</span> through
-        real-time service delivery to the public.
-      </p>
-      <p>
-        As a multi-skilled professional, I bring together technical expertise,
-        financial knowledge, and an entrepreneurial mindset. With a strong
-        foundation in web development, I specialize in building responsive,
-        user-centric websites and applications using modern technologies like
-        React, Node.js, Express, and MongoDB. I enjoy crafting clean, efficient
-        code and turning ideas into real-world digital solutions. In addition to
-        my technical abilities, I am proficient in Tally, which gives me a solid
-        understanding of accounting principles, financial reporting, and
-        business operations. This dual knowledge in tech and finance strengthens
-        my ability to approach problems with both creativity and strategic
-        thinking. Driven by curiosity and a passion for growth, I’ve also
-        embraced the spirit of entrepreneurship—exploring how technology can be
-        used to solve real problems, create value, and empower people. Whether
-        working independently or as part of a team, I am always eager to learn,
-        innovate, and contribute meaningfully to projects that make a
-        difference.
-      </p>
+        <p style={styles.text}>
+          I recently completed a 3-month web development course focused on
+          building responsive and interactive websites. I gained hands-on
+          experience with HTML, CSS, and JavaScript — the core technologies of
+          frontend development.
+        </p>
+
+        <p style={styles.text}>
+          I also worked for <strong>two years</strong> as a counter official in
+          Punakha Dzong. This role sharpened my communication and{" "}
+          <span style={styles.highlight}>problem-solving skills</span> through
+          real-time service delivery to the public.
+        </p>
+
+        <p style={styles.text}>
+          As a multi-skilled professional, I combine technical expertise,
+          financial knowledge, and an entrepreneurial mindset. I'm confident in
+          building responsive websites using React, Node.js, Express, and
+          MongoDB.
+        </p>
+
+        <hr style={styles.divider} />
+      </div>
     </section>
   );
 };
 
 const styles = {
   section: {
-    padding: "3rem 1rem",
-    maxWidth: "850px",
-    margin: "2rem auto",
-    backgroundColor: "#f9fbfc",
-    borderRadius: "20px",
-    boxShadow: "0 8px 24px rgba(0,0,0,0.1)",
+    position: "relative",
+    padding: "4rem 1rem",
+    backgroundImage:
+      "url('https://i.pinimg.com/736x/a5/1e/b8/a51eb8074352e765c15e61c6a1859f5e.jpg')",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+    fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
+    color: "#222",
+  },
+  gradientOverlay: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    background:
+      "linear-gradient(135deg, rgba(142, 68, 173, 0.85), rgba(58, 123, 213, 0.85))",
+    zIndex: 1,
+    borderRadius: "25px",
+  },
+  overlay: {
+    position: "relative",
+    zIndex: 2,
+    maxWidth: "900px",
+    margin: "0 auto",
+    backgroundColor: "rgba(255, 255, 255, 0.95)",
+    padding: "3rem 3rem 4rem",
+    borderRadius: "25px",
+    boxShadow: "0 15px 40px rgba(0,0,0,0.25)",
     textAlign: "center",
   },
   heading: {
-    fontSize: "2.2rem",
-    marginBottom: "1rem",
-    color: "#333",
+    fontSize: "2.8rem",
+    marginBottom: "1.8rem",
+    color: "#5e2a7e",
+    textShadow: "1px 1px 4px rgba(0,0,0,0.1)",
+    letterSpacing: "1.2px",
   },
   subHeading: {
-    fontSize: "1.7rem",
-    marginTop: "2rem",
-    marginBottom: "1rem",
-    color: "#444",
+    fontSize: "2rem",
+    marginTop: "3rem",
+    marginBottom: "1.5rem",
+    color: "#4b3b61",
+    fontWeight: "600",
   },
   image: {
     width: "180px",
     height: "180px",
     borderRadius: "50%",
     objectFit: "cover",
-    boxShadow: "0 4px 16px rgba(0,0,0,0.15)",
-    marginBottom: "1.5rem",
+    boxShadow: "0 6px 20px rgba(0,0,0,0.2)",
+    marginBottom: "2rem",
+    userSelect: "none",
   },
   text: {
-    fontSize: "1.1rem",
+    fontSize: "1.2rem",
     lineHeight: "1.8",
-    color: "#555",
-    padding: "0 1rem",
-    marginBottom: "1rem",
+    color: "#444",
+    marginBottom: "1.8rem",
+    maxWidth: "700px",
+    marginLeft: "auto",
+    marginRight: "auto",
   },
   highlight: {
-    color: "#007bff",
-    fontWeight: "bold",
+    color: "#8e44ad",
+    fontWeight: "700",
+    position: "relative",
+    cursor: "default",
+    paddingBottom: "2px",
+    transition: "color 0.3s ease",
+  },
+  divider: {
+    marginTop: "3rem",
+    border: "none",
+    height: "3px",
+    width: "80px",
+    background: "linear-gradient(90deg, #8e44ad 0%, #ba68c8 50%, #8e44ad 100%)",
+    borderRadius: "10px",
+    marginLeft: "auto",
+    marginRight: "auto",
   },
 };
 
@@ -107,24 +171,101 @@ export default About;
 // const About = () => {
 //   return (
 //     <section id="about" style={styles.section}>
-//       <h2>About Me</h2>
-//       <img src="myphoto.jpg" alt="Profile" style={styles.image} />
-//       <p>
-//         Hi, I'm Phurba — a passionate web developer exploring React, Node.js,
-//         and MongoDB. I love dancing and building cool apps!
-//       </p>
-//       <h2>Highlight on my other trainings and work experince: </h2>
-//       <p>I have done my Tally ERP 0.9 course for six months in a well known and refined instiute in Bhutan namely Global computer center located in Wangdue district.
-//       </p>
-//       <p>I  served in Punakha dzong as a civil servent by working as a counter officail for two years where i not only have communication skill but also a highly problem solving skill. </p>
+//       <div style={styles.overlay}>
+//         <h2 style={styles.heading}>✨ About Me</h2>
+//         <img src="myphoto.jpg" alt="Phurba Profile" style={styles.image} />
+//         <p style={styles.text}>
+//           Hi, I'm <strong>Phurba</strong> — a passionate web developer exploring{" "}
+//           <span style={styles.highlight}>React</span>,{" "}
+//           <span style={styles.highlight}>Node.js</span>, and{" "}
+//           <span style={styles.highlight}>MongoDB</span>. <br />I love dancing
+//           and building cool apps that solve real problems.
+//         </p>
 
+//         <h2 style={styles.subHeading}>🎓 Trainings & 💼 Work Experience</h2>
+
+//         <p style={styles.text}>
+//           I completed a <strong>Tally ERP 0.9</strong> course over six months at
+//           a well-known institute in Bhutan: <em>Global Computer Center</em>{" "}
+//           located in Wangdue district.
+//         </p>
+
+//         <p style={styles.text}>
+//           I recently completed a 3-month web development course focused on
+//           building responsive and interactive websites. I gained hands-on
+//           experience with HTML, CSS, and JavaScript — the core technologies of
+//           frontend development.
+//         </p>
+
+//         <p style={styles.text}>
+//           I also worked for <strong>two years</strong> as a counter official in
+//           Punakha Dzong. This role sharpened my communication and
+//           <span style={styles.highlight}> problem-solving skills</span> through
+//           real-time service delivery to the public.
+//         </p>
+
+//         <p style={styles.text}>
+//           As a multi-skilled professional, I combine technical expertise,
+//           financial knowledge, and an entrepreneurial mindset. I'm confident in
+//           building responsive websites using React, Node.js, Express, and
+//           MongoDB.
+//         </p>
+//       </div>
 //     </section>
 //   );
 // };
 
 // const styles = {
-//   section: { padding: "2rem", textAlign: "center" },
-//   image: { width: "180px", borderRadius: "10px", margin: "1rem auto" },
+//   section: {
+//     padding: "3rem 1rem",
+//     backgroundImage:
+//       "url('https://i.pinimg.com/736x/a5/1e/b8/a51eb8074352e765c15e61c6a1859f5e.jpg')",
+//     backgroundSize: "cover",
+//     backgroundPosition: "center",
+//     backgroundRepeat: "no-repeat",
+//   },
+//   overlay: {
+//     maxWidth: "900px",
+//     margin: "0 auto",
+//     backgroundImage:
+//       "url('https://m.media-amazon.com/images/I/313Fq-FbsHL._CR0,0,407,407_._FMjpg_.jpg')",
+//     backgroundSize: "cover",
+//     backgroundPosition: "center",
+//     backgroundRepeat: "no-repeat",
+//     padding: "2.5rem",
+//     borderRadius: "20px",
+//     boxShadow: "0 12px 30px rgba(0,0,0,0.2)",
+//     textAlign: "center",
+//   },
+//   heading: {
+//     fontSize: "2.5rem",
+//     marginBottom: "1.5rem",
+//     color: "#2c3e50",
+//   },
+//   subHeading: {
+//     fontSize: "1.8rem",
+//     marginTop: "2.5rem",
+//     marginBottom: "1rem",
+//     color: "#374151",
+//   },
+//   image: {
+//     width: "180px",
+//     height: "180px",
+//     borderRadius: "50%",
+//     objectFit: "cover",
+//     boxShadow: "0 6px 20px rgba(0,0,0,0.2)",
+//     marginBottom: "1.5rem",
+//   },
+//   text: {
+//     fontSize: "1.1rem",
+//     lineHeight: "1.9",
+//     color: "#333",
+//     marginBottom: "1.5rem",
+//   },
+//   highlight: {
+//     color: "#8e44ad",
+//     fontWeight: "600",
+//   },
 // };
 
 // export default About;
